@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>About Me</title>
+</head>
+<body>
+  <h1>About Me</h1>
+
+  <ul>
+    <li>Nickname: <span id="nickname"></span>
+    <li>Favorites:  <span id="favorites"></span>
+    <li>Hometown: <span id="hometown"></span>
+   </ul>
+
+<!--Add a script tag to the bottom.
+Change the body style so it has a font-family of "Arial, sans-serif".
+Replace each of the spans (nickname, favorites, hometown) with your own information.
+Iterate through each li and change the class to "listitem". Add a style tag that sets a rule for "listitem" to make the color red.
+Create a new img element and set its src attribute to a picture of you. Append that element to the page. -->
+
+<script type="text/javascript">
+
+		var pageNode = document.getElementsByTagName('body')[0];
+		pageNode.style.fontFamily = "Arial, sans-serif"
+
+		document.getElementById('nickname').innerHTML = 'Iron Man Musk';
+		document.getElementById('favorites').innerHTML = 'Protein Shakes';
+		document.getElementById('hometown').innerHTML = 'Silicon Valley';
+
+		var bodyList = document.getElementsByTagName('li');
+		for(var i=0; i < bodyList.length; i++) { 
+			bodyList[i].className += "listitem";
+		};
+
+		col = document.getElementsByClassName('listitem');
+				for (var i =0; i < col.length; i++) {
+					col[i].style.color = "red";
+				}
+
+		var newImg = document.createElement('img');
+		newImg.src = 'http://static2.businessinsider.com/image/5282a43aecad043d195f3d49-1200/elon-musk.jpg';
+		pageNode.appendChild(newImg);
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!--EXERCISE: The Book List
+
+// Keep track of which books you read and which books you want to read!
+
+// Create a webpage with an h1 of "My Book List".
+// Add a script tag to the bottom of the page, where all your JS will go.
+// Copy the array of books from the previous exercise.
+// Iterate through the array of books. For each book, create a p element with the book title and author and append it to the page.
+// Bonus: Use a ul and li to display the books.
+// Bonus: add a property to each book with the URL of the book cover, and add an img element for each book on the page.
+// Bonus: Change the style of the book depending on whether you have read it or not. -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="utf-8"/>
+   <title>Book List</title>
+ </head>
+ <body>
+   <h1>Tech Books that are awesome!!!</h1>
+
+   <script type="text/javascript">
+
+
+    function book(title, author, alreadyRead, url) {
+      this.title = title;
+      this.coverImgUrl = url;
+      this.author = author;
+      this.alreadyRead = alreadyRead;
+    };
+
+    var bookList = [
+      new book("The New Digital Age", "Eric Schmidt", true,
+        'http://blog.toryburch.com/wp-content/uploads/The_New_Digital_Age_960.jpg'),
+      new book("Ready Player One", "Ernest Cline", false,
+        'http://jordanveason.files.wordpress.com/2013/01/ready-player-one_610.jpg'),
+      new book("Hatching Twitter", "Nick Bilton", true,
+        'http://cdn.ndtv.com/tech/images/hatching-twitter-635x475.jpg')
+    ];
+
+    var body = document.getElementsByTagName('body')[0];
+    // Style for Body
+    body.style.textAlign = 'center';
+
+    var list = document.createElement('ul');
+
+    // Style for book list in <ul>
+    list.style.listStyleType = 'none';
+    list.style.padding = '0';
+
+    for (var i = 0; i < bookList.length; i++) {
+      var listItem = document.createElement('li');
+
+      // Style for each book in <li>
+      listItem.style.width = '350px';
+      listItem.style.float = 'left';
+      listItem.style.margin = '10px';
+      listItem.style.padding = '10px 20px';
+
+      var book = bookList[i];
+      for (var j in book) {
+        if (j === 'alreadyRead') {
+          listItem.style.background = (book[j] ? 'tomato' : '#66FF33');
+        }
+        else if (j === 'coverImgUrl') {
+          var content = document.createElement('img');
+          content.setAttribute('src', book[j]);
+
+          // Style for Book Cover in <img> tag
+          content.style.width = '100%';
+          content.style.height = '400px';
+        }
+        else {
+          var content = document.createElement('p');
+          content.innerHTML = book[j];
+
+          // Style for font size in <p> tag
+          content.style.fontSize = '1.5em';
+        }
+        content.setAttribute('class', j)
+        listItem.appendChild(content);
+      };
+      list.appendChild(listItem);
+    };
+    body.appendChild(list);
+
+
+  </script>
+</body>
+</html>
